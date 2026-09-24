@@ -45,3 +45,12 @@ uv run python main.py --host-ip 192.168.1.42
   laptopot – ilyenkor saját AP/router kell.
 - **Rossz LAN IP**: VPN/virtuális adapter is ellőzheti a választást –
   ilyenkor állítsd be a `HOST_IP`-t a laptop valódi LAN címére.
+
+## Dizájn
+
+Az arculat a [veszpremvibe.hu](https://veszpremvibe.hu/) vizuális
+nyelvét követi (meleg papír-háttér, mélykék, borostyán akcentusok,
+mono feliratok). A Space Grotesk és JetBrains Mono betűk a
+`static/fonts/` mappában vannak (SIL OFL 1.1 licenc) – futás közben
+nincs külső betűtöltés, mindent a saját szerver szolgál ki.
+A betűk újragenerálásához: `uv run python scripts/fetch_fonts.py`.

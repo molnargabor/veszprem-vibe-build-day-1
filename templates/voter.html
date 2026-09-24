@@ -4,33 +4,73 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Szavazás</title>
+  <link rel="stylesheet" href="/static/fonts.css">
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body class="voter">
   <main class="voter">
-    <p class="brand-voter">Veszprém Vibe · Build Day</p>
+    <div class="voter-head">
+      <div class="vv-mark" aria-hidden="true">
+        <svg viewBox="0 0 100 100" fill="none">
+          <path class="outline-v" d="M16 22 L50 82 L84 22" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+          <path class="inner-v" d="M33 22 L50 52 L67 22" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <p class="eyebrow">// veszprém vibe</p>
+    </div>
 
     <div id="screen-waiting" class="screen">
-      <p class="waiting-title">Várakozás a következő kérdésre…</p>
-      <p class="muted">Az admin hamarosan publikál egy kérdést.</p>
+      <div class="screen-card">
+        <p class="card-eyebrow">/// következő</p>
+        <p class="waiting-title">Várakozás a következő kérdésre…</p>
+        <p class="muted">Az admin hamarosan publikál egy kérdést.</p>
+      </div>
     </div>
 
     <div id="screen-question" class="screen hidden">
-      <h1 id="q-text"></h1>
-      <p id="q-hint" class="muted"></p>
-      <div id="q-options"></div>
-      <button id="vote-btn" class="btn primary big" disabled>Szavazat küldése</button>
-      <p id="vote-msg" class="muted"></p>
+      <div class="screen-card">
+        <p class="card-eyebrow">/// aktuális kérdés</p>
+        <h1 id="q-text"></h1>
+        <p id="q-hint" class="muted"></p>
+        <div id="q-options"></div>
+        <button id="vote-btn" class="btn primary big" disabled>Szavazat küldése →</button>
+        <p id="vote-msg" class="muted"></p>
+      </div>
     </div>
 
     <div id="screen-thanks" class="screen hidden">
-      <div class="thanks-icon">✦</div>
-      <p class="thanks-title">Köszönjük, a szavazatod rögzítettük</p>
+      <div class="screen-card">
+        <div class="thanks-icon">✓</div>
+        <p class="thanks-title">Köszönjük, a szavazatod rögzítettük</p>
+      </div>
+    </div>
+
+    <div class="skyline" aria-hidden="true">
+      <svg viewBox="0 0 380 60" fill="none">
+        <path class="sky-hill" d="M4 56 C70 42 130 42 190 56 M200 56 C260 44 320 44 376 56" stroke="#7a8aa3" stroke-width="2" opacity="0.45"/>
+        <g stroke="#1a2638" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.9">
+          <path d="M24 56 V44 l6 -14 6 14 v12"/>
+          <path d="M52 56 V50 h6 v-5 h8 v5 h6 v6"/>
+          <path d="M82 56 V38 h18 v6 h-8 v12"/>
+          <path d="M196 56 V34 h14 v8 h-6 v14"/>
+          <path d="M226 56 V42 l7 -14 7 14 v14"/>
+          <path d="M258 56 V52 h10 v-6 h6 v6 h10 v4"/>
+          <path d="M300 56 V44 h8 v-10 h6 v10 h8 v12"/>
+          <path d="M338 56 V40 l6 -12 6 12 v16"/>
+          <path d="M6 56 H374"/>
+        </g>
+        <g stroke="#e6995a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <path d="M120 56 V36 l8 -18 8 18 v20"/>
+          <path d="M150 56 V46 h8 v-8 h8 v8 h8 v10"/>
+        </g>
+        <rect x="0" y="6" width="3" height="50" fill="#e6995a" opacity="0.8">
+          <animate attributeName="x" values="0;374" dur="9s" repeatCount="indefinite"/>
+        </rect>
+      </svg>
     </div>
   </main>
 
-  <footer>Ragyogj! ✳ <strong>Veszprém Vibe</strong> · helyi hálózaton fut, felhő nélkül</footer>
-
+  <footer><span class="mono-label">// helyi hálózaton fut, felhő nélkül</span></footer>
   <script src="/static/voter.js"></script>
 </body>
 </html>

@@ -1,122 +1,134 @@
-/* Saját CSS – Veszprém vibe arculat (Veszprém–Balaton 2023, Hidden Characters).
-   Paletta az arculati kézikönyvből:
-   --navy #0A1E5A (10/30/90)  --blue #2D427D (45/66/125)
-   --yellow #F3E487 (245/230/135) --mint #E6F5F5 (230/245/245)
-   --coral #FA8273 (250/130/115) --green #0F6446 (15/100/70)
-   --charcoal #303030 (48/48/48)
-   Modern, „Ragyogj!” hangulat: mélykék alap, fénylő akcentusok, bátor tipográfia. */
+/* Saját CSS – a https://veszpremvibe.hu/ arculatához igazítva.
+   Paletta a hivatalos oldalról (CSS változóiból):
+     --navy #1a2638   --navy-deep #0f1724   --navy-soft #4a576d
+     --line #7a8aa3   --paper #f6f3ee       --paper-warm #efe8dd
+     --paper-light #faf7f2                   --amber #e6995a   --amber-deep #d27f3e
+   Tipográfia: Space Grotesk (szöveg) + JetBrains Mono (mono feliratok),
+   önhostolva a static/fonts-ból (static/fonts.css deklarálja) – CDN nélkül.
+   Jellemzők: meleg papír-háttér, mono uppercase címkék, borostyán akcentusok. */
 
 :root {
-  --navy: #0a1e5a;
-  --blue: #2d427d;
-  --yellow: #f3e487;
-  --mint: #e6f5f5;
-  --coral: #fa8273;
-  --green: #0f6446;
-  --charcoal: #303030;
-  --paper: #f2f8f7;
-  --radius: 14px;
-  --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --navy: #1a2638;
+  --navy-deep: #0f1724;
+  --navy-soft: #4a576d;
+  --line: #7a8aa3;
+  --paper: #f6f3ee;
+  --paper-warm: #efe8dd;
+  --paper-light: #faf7f2;
+  --amber: #e6995a;
+  --amber-deep: #d27f3e;
+  --font-body: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --radius-card: 18px;
+  --radius-btn: 4px;
 }
 
 * { box-sizing: border-box; }
 
+html, body { margin: 0; padding: 0; background: var(--paper); color: var(--navy); }
+
 body {
-  margin: 0;
-  font-family: var(--sans);
-  color: var(--charcoal);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.mono { font-family: var(--font-mono); }
+
+/* VV monogram (a veszpremvibe.hu jeléből) */
+.vv-mark { color: var(--navy); }
+.vv-mark svg { display: block; width: 100%; height: auto; }
+.vv-mark .outline-v { stroke: currentColor; }
+.vv-mark .inner-v { stroke: var(--amber); animation: v-pulse 3s ease-in-out infinite; }
+
+@keyframes v-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
 }
 
 /* ============================================================
-   ADMIN oldal – világos, friss, „műhely” hangulat
+   ADMIN oldal
    ============================================================ */
 
 body.admin {
-  background:
-    radial-gradient(900px 480px at 110% -10%, rgba(243, 228, 135, 0.28), transparent 60%),
-    radial-gradient(700px 420px at -10% 110%, rgba(42, 66, 125, 0.10), transparent 55%),
-    var(--paper);
-  padding: 1.5rem 1.25rem 3rem;
   max-width: 900px;
   margin-inline: auto;
+  padding: 1.6rem 1.25rem 3rem;
+  background:
+    radial-gradient(700px 420px at 110% -10%, rgba(230, 153, 90, 0.12), transparent 60%),
+    var(--paper);
 }
 
-.brand {
-  margin: 0 0 0.35rem;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.28em;
+.admin-head { display: flex; flex-direction: column; align-items: flex-start; gap: 0.4rem; margin-bottom: 1.7rem; }
+
+.admin-head .vv-mark { width: 44px; }
+
+.eyebrow {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--blue);
+  color: var(--amber-deep);
+  opacity: 0.95;
 }
 
 header h1 {
-  margin: 0 0 1.6rem;
-  font-size: 1.6rem;
-  font-weight: 900;
-  letter-spacing: -0.01em;
+  margin: 0.15rem 0 0;
+  font-size: 1.65rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
   color: var(--navy);
+  text-wrap: balance;
 }
 
-header h1::after {
-  content: "";
-  display: block;
-  width: 56px;
-  height: 5px;
-  margin-top: 0.55rem;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--yellow), var(--coral));
-}
+/* --- kártyák --- */
 
 .card {
-  background: #fff;
-  border-radius: var(--radius);
-  padding: 1.3rem 1.5rem;
-  margin-bottom: 1.25rem;
-  box-shadow: 0 1px 3px rgba(10, 30, 90, 0.10), 0 6px 18px rgba(10, 30, 90, 0.05);
+  background: var(--paper-light);
+  border: 1px solid rgba(26, 38, 56, 0.12);
+  border-radius: var(--radius-card);
+  padding: 1.25rem 1.4rem 1.35rem;
+  margin-bottom: 1.15rem;
+  box-shadow: 0 1px 2px rgba(26, 38, 56, 0.04), 0 10px 26px rgba(26, 38, 56, 0.05);
 }
 
 .card h2 {
-  margin: 0 0 1rem;
-  font-size: 1.02rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
+  margin: 0 0 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--navy);
+  color: var(--navy-soft);
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.55rem;
 }
 
-.card h2::before {
-  content: "";
-  width: 10px;
-  height: 10px;
-  border-radius: 3px;
-  background: var(--yellow);
-  transform: rotate(45deg);
-  flex-shrink: 0;
-}
+.card h2::before { content: "//"; color: var(--amber); font-weight: 600; }
 
-.card.danger { border: 1px solid rgba(250, 130, 115, 0.5); }
+.card.danger { border-color: rgba(210, 127, 62, 0.55); }
+.card.danger h2::before { color: var(--amber-deep); }
 
-.card.danger h2::before { background: var(--coral); }
+/* --- űrlap --- */
 
-.field { display: block; margin-bottom: 1rem; font-weight: 700; font-size: 0.9rem; color: var(--navy); }
+.field { display: block; margin-bottom: 1rem; font-size: 0.93rem; font-weight: 600; color: var(--navy); }
 
 .field input,
 .field select,
 .field textarea {
   display: block;
   width: 100%;
-  margin-top: 0.35rem;
-  padding: 0.6rem 0.75rem;
+  margin-top: 0.4rem;
+  padding: 0.62rem 0.78rem;
   font-size: 1rem;
-  font-family: inherit;
-  color: var(--charcoal);
-  border: 1.5px solid #cfdfde;
-  border-radius: 10px;
+  font-family: var(--font-body);
+  color: var(--navy);
   background: #fff;
+  border: 1px solid rgba(26, 38, 56, 0.28);
+  border-radius: 6px;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -124,117 +136,129 @@ header h1::after {
 .field select:focus,
 .field textarea:focus {
   outline: none;
-  border-color: var(--blue);
-  box-shadow: 0 0 0 3px rgba(45, 66, 125, 0.15);
+  border-color: var(--amber-deep);
+  box-shadow: 0 0 0 3px rgba(230, 153, 90, 0.3);
 }
 
 .field textarea { resize: vertical; }
 
+/* --- gombok: mono uppercase, borostyán / navy --- */
+
 .btn {
   display: inline-block;
-  padding: 0.62rem 1.15rem;
-  font-size: 0.93rem;
-  font-weight: 800;
-  font-family: inherit;
-  letter-spacing: 0.02em;
-  border: 0;
-  border-radius: 10px;
-  background: #eef1f0;
-  color: var(--charcoal);
+  padding: 0.72rem 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--navy);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-btn);
   cursor: pointer;
-  transition: transform 0.12s ease, background 0.15s ease, box-shadow 0.15s ease;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.12s ease;
 }
 
-.btn:hover:not(:disabled) { transform: translateY(-1px); }
-.btn:active:not(:disabled) { transform: translateY(0); }
-.btn:disabled { opacity: 0.5; cursor: default; }
+.btn:hover:not(:disabled) { background: var(--navy); border-color: var(--navy); color: var(--paper); }
+.btn:active:not(:disabled) { transform: translateY(1px); }
 
+/* ahova már publikálták (Aktív) – telt navy, olvasható állapot */
+.btn:disabled { background: var(--navy); border-color: var(--navy); color: var(--paper); opacity: 1; cursor: default; }
+
+/* fő CTA – borostyán, ahogy a veszpremvibe.hu btn-primary-ja */
 .btn.primary {
-  background: var(--navy);
-  color: #fff;
-  box-shadow: 0 4px 14px rgba(10, 30, 90, 0.28);
+  background: var(--amber);
+  border-color: var(--amber);
+  color: var(--navy);
 }
 
-.btn.primary:hover:not(:disabled) { background: var(--blue); }
+.btn.primary:hover:not(:disabled) { background: #f0a868; border-color: #f0a868; color: var(--navy); }
 
 .btn.danger-outline {
-  background: #fff;
-  border: 1.5px solid var(--coral);
-  color: var(--coral);
+  border: 1px dashed var(--amber-deep);
+  color: var(--amber-deep);
+  background: transparent;
 }
 
-.btn.danger-outline:hover:not(:disabled) { background: #fdeeed; }
+.btn.danger-outline:hover:not(:disabled) { background: var(--navy); border-style: solid; border-color: var(--navy); color: var(--paper); }
 
 .row { margin-top: 1rem; }
 
+/* --- résztvevői link + QR --- */
+
 .url {
-  font-size: 1.2rem;
-  font-weight: 800;
+  font-size: 1.15rem;
+  font-weight: 700;
   word-break: break-all;
   color: var(--navy);
+  font-family: var(--font-mono);
 }
 
 .qr {
   display: inline-block;
-  margin-top: 0.6rem;
-  padding: 0.7rem;
+  margin-top: 0.8rem;
+  padding: 0.8rem;
   background: #fff;
-  border: 1.5px dashed var(--blue);
-  border-radius: var(--radius);
+  border: 1.5px dashed var(--line);
+  border-radius: 10px;
 }
 
 .qr svg { width: 250px; height: 250px; max-width: 100%; display: block; }
 
-.muted { color: #5b6b78; }
+.muted { color: var(--navy-soft); }
 
 /* --- kérdéslista + élő diagram --- */
 
 .question {
-  border: 1.5px solid #e3eef0;
-  border-left: 6px solid var(--mint);
-  border-radius: var(--radius);
-  padding: 1rem 1.2rem;
-  margin-bottom: 1rem;
-  background: #fcfefe;
+  border: 1px solid rgba(26, 38, 56, 0.12);
+  border-left: 5px solid var(--line);
+  border-radius: 12px;
+  padding: 0.95rem 1.15rem 1rem;
+  margin-bottom: 0.9rem;
+  background: #fdfcf8;
   transition: border-color 0.2s ease, background 0.2s ease;
 }
 
 .question.active {
-  border-left-color: var(--yellow);
-  background: #fffdf4;
+  border-left-color: var(--amber);
+  background: #fffdf6;
 }
 
 .question h3 {
-  margin: 0 0 0.7rem;
-  font-size: 1.05rem;
-  font-weight: 800;
+  margin: 0 0 0.6rem;
+  font-size: 1.02rem;
+  font-weight: 700;
   color: var(--navy);
+  line-height: 1.35;
 }
 
 .badge {
   display: inline-block;
-  font-size: 0.68rem;
-  font-weight: 900;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 0.2rem 0.55rem;
-  border-radius: 999px;
+  letter-spacing: 0.14em;
+  padding: 0.24rem 0.55rem;
+  border-radius: var(--radius-btn);
   vertical-align: middle;
-  margin-left: 0.4rem;
+  margin-left: 0.45rem;
 }
 
-.badge.single { background: var(--mint); color: var(--green); }
-.badge.multi { background: #fde8e5; color: #b23d30; }
+.badge.single { background: var(--navy); color: var(--paper); }
+.badge.multi { background: var(--amber); color: var(--navy); }
 
 .chart { margin-top: 0.5rem; }
 
 .chart-title {
-  font-weight: 900;
-  color: var(--navy);
-  margin-bottom: 0.55rem;
-  font-size: 0.9rem;
-  letter-spacing: 0.03em;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
+  color: var(--navy-soft);
+  margin-bottom: 0.6rem;
 }
 
 .bar-row {
@@ -242,186 +266,218 @@ header h1::after {
   grid-template-columns: minmax(88px, 26%) 1fr auto;
   gap: 0.65rem;
   align-items: center;
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.5rem;
   font-size: 0.9rem;
 }
 
-.bar-label { overflow-wrap: anywhere; font-weight: 600; color: var(--charcoal); }
+.bar-label { overflow-wrap: anywhere; font-weight: 600; color: var(--navy); }
 
 .bar-track {
-  background: var(--mint);
-  border-radius: 999px;
-  height: 18px;
+  background: var(--paper-warm);
+  border-radius: 6px;
+  height: 16px;
   overflow: hidden;
 }
 
 .bar-fill {
-  background: linear-gradient(90deg, var(--navy), var(--blue));
+  background: linear-gradient(90deg, var(--amber), var(--amber-deep));
   height: 100%;
-  border-radius: 999px;
+  border-radius: 6px;
   transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* felváltva akcentus-színek a sorokban */
-.bar-row:nth-child(2n) .bar-fill { background: linear-gradient(90deg, var(--green), #15906a); }
-.bar-row:nth-child(3n) .bar-fill { background: linear-gradient(90deg, #c2543f, var(--coral)); }
-
 .bar-count {
-  color: #5b6b78;
+  color: var(--navy-soft);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
-  font-weight: 700;
+  font-weight: 600;
+  font-size: 0.83rem;
 }
 
 /* ============================================================
-   RÉSZTVEVŐI oldal – éjszakai esemény-fény, mélykék
+   RÉSZTVEVŐI oldal – meleg papír, mélykék „kártya”, borostyán
    ============================================================ */
 
 body.voter {
   min-height: 100vh;
   background:
-    radial-gradient(1100px 560px at 12% -8%, rgba(250, 130, 115, 0.35), transparent 58%),
-    radial-gradient(900px 520px at 108% 108%, rgba(243, 228, 135, 0.30), transparent 55%),
-    radial-gradient(800px 480px at 85% -15%, rgba(15, 100, 70, 0.35), transparent 60%),
-    var(--navy);
-  color: #fff;
+    radial-gradient(900px 520px at 105% -12%, rgba(230, 153, 90, 0.18), transparent 55%),
+    radial-gradient(700px 400px at -10% 110%, rgba(26, 38, 56, 0.07), transparent 55%),
+    var(--paper);
 }
 
 .voter {
-  max-width: 560px;
+  max-width: 520px;
   margin-inline: auto;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 1.25rem 1.1rem 2rem;
+  padding: 1.4rem 1.1rem 1.6rem;
 }
 
-.brand-voter {
-  text-align: center;
-  margin: 0 0 1.4rem;
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.34em;
+.voter-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.voter-head .vv-mark { width: 30px; flex-shrink: 0; }
+.voter-head .eyebrow { font-size: 11px; letter-spacing: 0.28em; color: var(--navy-soft); }
+
+/* sötét, mélykék kártya – ahogy a veszpremvibe.hu kiemelt kártyái */
+.screen-card {
+  background: var(--navy-deep);
+  color: var(--paper);
+  border: 1px solid rgba(122, 138, 163, 0.3);
+  border-radius: var(--radius-card);
+  padding: 1.6rem 1.45rem 1.5rem;
+  box-shadow: 0 16px 40px rgba(15, 23, 36, 0.22);
+}
+
+.card-eyebrow {
+  margin: 0 0 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: var(--yellow);
-  opacity: 0.85;
+  color: var(--amber);
+  text-align: center;
 }
 
 .screen { text-align: center; }
-
 .screen.hidden { display: none; }
 
 .screen h1 {
-  font-size: 1.7rem;
-  line-height: 1.3;
+  font-size: 1.6rem;
+  line-height: 1.32;
   margin: 0 auto 0.5rem;
-  max-width: 24ch;
-  font-weight: 900;
-  letter-spacing: -0.01em;
+  max-width: 22ch;
+  font-weight: 700;
+  letter-spacing: -0.012em;
+  color: var(--paper);
   text-wrap: balance;
 }
 
-/* Várakozás: lassú fény-pulzálás */
+/* Várakozás / köszönés */
 .waiting-title,
 .thanks-title {
-  font-size: 1.45rem;
-  font-weight: 900;
-  letter-spacing: 0.02em;
-  color: #fff;
-  margin: 0 0 0.5rem;
+  font-size: 1.32rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--paper);
+  margin: 0 0 0.4rem;
+  line-height: 1.35;
 }
 
-.waiting-title { animation: breathe 3.2s ease-in-out infinite; }
+.waiting-title { color: var(--amber); animation: breathe 3.2s ease-in-out infinite; }
 
 @keyframes breathe {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.62; }
-}
-
-.thanks-title {
-  color: var(--yellow);
-  text-shadow: 0 0 28px rgba(243, 228, 135, 0.45);
+  50% { opacity: 0.6; }
 }
 
 .thanks-icon {
   display: inline-block;
-  margin-bottom: 0.9rem;
-  width: 64px;
-  height: 64px;
-  line-height: 64px;
-  border-radius: 50%;
-  background: var(--yellow);
+  margin-bottom: 0.85rem;
+  width: 58px;
+  height: 58px;
+  line-height: 58px;
+  text-align: center;
+  border-radius: 4px;
+  background: var(--amber);
   color: var(--navy);
-  font-size: 1.7rem;
-  font-weight: 900;
-  box-shadow: 0 6px 24px rgba(243, 228, 135, 0.4);
+  font-size: 1.5rem;
+  font-weight: 700;
+  box-shadow: 0 8px 22px rgba(230, 153, 90, 0.4);
 }
 
-#q-hint { color: rgba(230, 245, 245, 0.85); margin: 0 0 1.2rem; font-size: 0.95rem; }
+.thanks-title { color: var(--amber); }
 
-/* opciók: fehér kártyák, kiválasztva sárga */
+#q-hint { color: rgba(246, 243, 238, 0.72); margin: 0 0 1.2rem; font-size: 0.95rem; }
+
+/* opciók: világos „papír” sorok a sötét kártyán */
 .option {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: 0.8rem;
   text-align: left;
-  background: rgba(255, 255, 255, 0.97);
+  background: var(--paper-light);
   color: var(--navy);
-  border: 2px solid transparent;
-  border-radius: var(--radius);
-  padding: 1rem 1.15rem;
-  margin-bottom: 0.75rem;
-  font-size: 1.12rem;
-  font-weight: 700;
+  border: 1.5px solid transparent;
+  border-radius: 8px;
+  padding: 0.95rem 1.05rem;
+  margin-bottom: 0.7rem;
+  font-size: 1.08rem;
+  font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
   transition: transform 0.12s ease, background 0.15s ease, border-color 0.15s ease;
 }
 
 .option:active { transform: scale(0.985); }
 
 .option:has(input:checked) {
-  background: var(--yellow);
-  border-color: var(--navy);
+  background: var(--amber);
+  border-color: var(--navy-deep);
+  color: var(--navy);
 }
 
 .option input {
-  width: 1.4rem;
-  height: 1.4rem;
+  width: 1.35rem;
+  height: 1.35rem;
   flex-shrink: 0;
-  accent-color: var(--navy);
+  accent-color: var(--navy-deep);
 }
 
-/* CTA – nagyon feltűnő sárga gomb */
+/* CTA – borostyán, teljes szélesség, érintésbarát */
 #vote-btn {
   width: 100%;
-  margin-top: 1.1rem;
-  padding: 1.05rem;
-  font-size: 1.25rem;
-  font-weight: 900;
-  letter-spacing: 0.02em;
-  border-radius: 999px;
+  margin-top: 1.05rem;
+  padding: 1rem 1.2rem;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  border-radius: var(--radius-btn);
   border: 0;
-  background: var(--yellow);
+  background: var(--amber);
   color: var(--navy);
   cursor: pointer;
-  box-shadow: 0 8px 26px rgba(243, 228, 135, 0.38);
-  transition: transform 0.12s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+  box-shadow: 0 10px 28px rgba(230, 153, 90, 0.35);
+  transition: transform 0.12s ease, background 0.15s ease, box-shadow 0.15s ease;
 }
 
-#vote-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(243, 228, 135, 0.5); }
-#vote-btn:disabled { opacity: 0.45; cursor: default; box-shadow: none; }
+#vote-btn:hover:not(:disabled) { background: #f0a868; transform: translateY(-1px); box-shadow: 0 14px 34px rgba(230, 153, 90, 0.45); }
+#vote-btn:disabled { opacity: 0.4; cursor: default; box-shadow: none; }
 
-#vote-msg { color: #ffe3dd; margin-top: 0.9rem; }
+#vote-msg { color: #f3c7b0; margin-top: 0.9rem; font-size: 0.9rem; }
 
-.screen .muted { color: rgba(230, 245, 245, 0.75); }
+.screen .muted { color: rgba(246, 243, 238, 0.72); }
+
+/* --- horizonthoz skyline (Veszprém hangulat, a weboldal motívuma) --- */
+
+.skyline { margin-top: 1.8rem; text-align: center; }
+
+.skyline svg {
+  max-width: 380px;
+  width: 100%;
+  height: auto;
+  display: inline-block;
+}
 
 footer {
-  margin-top: 2.2rem;
-  font-size: 0.82rem;
+  margin-top: 1.1rem;
+  font-size: 0.78rem;
   text-align: center;
-  color: rgba(230, 245, 245, 0.75);
+  color: var(--navy-soft);
 }
 
-footer strong { color: var(--yellow); letter-spacing: 0.06em; }
+footer .mono-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--navy-soft);
+}
