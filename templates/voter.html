@@ -6,8 +6,10 @@
   <title>Szavazás</title>
   <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
+<body class="voter">
   <main class="voter">
+    <p class="brand-voter">Veszprém Vibe · Build Day</p>
+
     <div id="screen-waiting" class="screen">
       <p class="waiting-title">Várakozás a következő kérdésre…</p>
       <p class="muted">Az admin hamarosan publikál egy kérdést.</p>
@@ -22,10 +24,12 @@
     </div>
 
     <div id="screen-thanks" class="screen hidden">
+      <div class="thanks-icon">✦</div>
       <p class="thanks-title">Köszönjük, a szavazatod rögzítettük</p>
-      <p class="muted">Köszönjük, hogy szavaztál!</p>
     </div>
   </main>
+
+  <footer>Ragyogj! ✳ <strong>Veszprém Vibe</strong> · helyi hálózaton fut, felhő nélkül</footer>
 
   <script src="/static/voter.js"></script>
 </body>

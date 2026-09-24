@@ -1,177 +1,311 @@
-/* Saját CSS – nincs külső asset/CDN. */
+/* Saját CSS – Veszprém vibe arculat (Veszprém–Balaton 2023, Hidden Characters).
+   Paletta az arculati kézikönyvből:
+   --navy #0A1E5A (10/30/90)  --blue #2D427D (45/66/125)
+   --yellow #F3E487 (245/230/135) --mint #E6F5F5 (230/245/245)
+   --coral #FA8273 (250/130/115) --green #0F6446 (15/100/70)
+   --charcoal #303030 (48/48/48)
+   Modern, „Ragyogj!” hangulat: mélykék alap, fénylő akcentusok, bátor tipográfia. */
 
 :root {
-  --bg: #f4f5f7;
-  --ink: #1c2430;
-  --muted: #66707d;
-  --card: #ffffff;
-  --accent: #2b6cb0;
-  --accent-dark: #245a94;
-  --danger: #c53030;
-  --radius: 12px;
+  --navy: #0a1e5a;
+  --blue: #2d427d;
+  --yellow: #f3e487;
+  --mint: #e6f5f5;
+  --coral: #fa8273;
+  --green: #0f6446;
+  --charcoal: #303030;
+  --paper: #f2f8f7;
+  --radius: 14px;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
 }
 
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  background: var(--bg);
-  color: var(--ink);
-  padding: 1.5rem;
-  max-width: 860px;
+  font-family: var(--sans);
+  color: var(--charcoal);
+}
+
+/* ============================================================
+   ADMIN oldal – világos, friss, „műhely” hangulat
+   ============================================================ */
+
+body.admin {
+  background:
+    radial-gradient(900px 480px at 110% -10%, rgba(243, 228, 135, 0.28), transparent 60%),
+    radial-gradient(700px 420px at -10% 110%, rgba(42, 66, 125, 0.10), transparent 55%),
+    var(--paper);
+  padding: 1.5rem 1.25rem 3rem;
+  max-width: 900px;
   margin-inline: auto;
 }
 
-h1 { margin: 0 0 1.25rem; font-size: 1.5rem; }
-
-/* --- általános kártyák / gombok --- */
-
-.card {
-  background: var(--card);
-  border-radius: var(--radius);
-  padding: 1.25rem 1.5rem;
-  margin-bottom: 1.25rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+.brand {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--blue);
 }
 
-.card h2 { margin-top: 0; font-size: 1.1rem; }
+header h1 {
+  margin: 0 0 1.6rem;
+  font-size: 1.6rem;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+}
 
-.card.danger { border: 1px solid rgba(197, 48, 48, 0.25); }
+header h1::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 5px;
+  margin-top: 0.55rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--yellow), var(--coral));
+}
 
-.field { display: block; margin-bottom: 0.9rem; font-weight: 600; }
+.card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 1.3rem 1.5rem;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 1px 3px rgba(10, 30, 90, 0.10), 0 6px 18px rgba(10, 30, 90, 0.05);
+}
+
+.card h2 {
+  margin: 0 0 1rem;
+  font-size: 1.02rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card h2::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: var(--yellow);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+.card.danger { border: 1px solid rgba(250, 130, 115, 0.5); }
+
+.card.danger h2::before { background: var(--coral); }
+
+.field { display: block; margin-bottom: 1rem; font-weight: 700; font-size: 0.9rem; color: var(--navy); }
 
 .field input,
 .field select,
 .field textarea {
   display: block;
   width: 100%;
-  margin-top: 0.3rem;
-  padding: 0.55rem 0.7rem;
+  margin-top: 0.35rem;
+  padding: 0.6rem 0.75rem;
   font-size: 1rem;
   font-family: inherit;
-  border: 1px solid #cbd5e0;
-  border-radius: 8px;
+  color: var(--charcoal);
+  border: 1.5px solid #cfdfde;
+  border-radius: 10px;
   background: #fff;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(45, 66, 125, 0.15);
 }
 
 .field textarea { resize: vertical; }
 
 .btn {
   display: inline-block;
-  padding: 0.6rem 1.1rem;
-  font-size: 0.95rem;
-  font-weight: 600;
+  padding: 0.62rem 1.15rem;
+  font-size: 0.93rem;
+  font-weight: 800;
   font-family: inherit;
-  border: 1px solid #cbd5e0;
-  border-radius: 8px;
-  background: #edf2f7;
-  color: var(--ink);
+  letter-spacing: 0.02em;
+  border: 0;
+  border-radius: 10px;
+  background: #eef1f0;
+  color: var(--charcoal);
   cursor: pointer;
+  transition: transform 0.12s ease, background 0.15s ease, box-shadow 0.15s ease;
 }
 
-.btn:hover:not(:disabled) { background: #e2e8f0; }
-.btn:disabled { opacity: 0.55; cursor: default; }
+.btn:hover:not(:disabled) { transform: translateY(-1px); }
+.btn:active:not(:disabled) { transform: translateY(0); }
+.btn:disabled { opacity: 0.5; cursor: default; }
 
 .btn.primary {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: var(--navy);
   color: #fff;
+  box-shadow: 0 4px 14px rgba(10, 30, 90, 0.28);
 }
 
-.btn.primary:hover:not(:disabled) { background: var(--accent-dark); }
+.btn.primary:hover:not(:disabled) { background: var(--blue); }
 
 .btn.danger-outline {
   background: #fff;
-  border-color: var(--danger);
-  color: var(--danger);
+  border: 1.5px solid var(--coral);
+  color: var(--coral);
 }
 
-.btn.danger-outline:hover { background: #fed7d7; }
+.btn.danger-outline:hover:not(:disabled) { background: #fdeeed; }
 
-.btn.big {
-  width: 100%;
-  padding: 1rem;
+.row { margin-top: 1rem; }
+
+.url {
   font-size: 1.2rem;
-  border-radius: 12px;
+  font-weight: 800;
+  word-break: break-all;
+  color: var(--navy);
 }
 
-.row { margin-top: 0.9rem; }
+.qr {
+  display: inline-block;
+  margin-top: 0.6rem;
+  padding: 0.7rem;
+  background: #fff;
+  border: 1.5px dashed var(--blue);
+  border-radius: var(--radius);
+}
 
-.url { font-size: 1.25rem; font-weight: 600; word-break: break-all; }
+.qr svg { width: 250px; height: 250px; max-width: 100%; display: block; }
 
-.qr svg { width: 260px; height: 260px; max-width: 100%; background: #fff; }
+.muted { color: #5b6b78; }
 
-.muted { color: var(--muted); }
-
-/* --- admin: kérdéslista + diagram --- */
+/* --- kérdéslista + élő diagram --- */
 
 .question {
-  border: 1px solid #e2e8f0;
+  border: 1.5px solid #e3eef0;
+  border-left: 6px solid var(--mint);
   border-radius: var(--radius);
   padding: 1rem 1.2rem;
   margin-bottom: 1rem;
-  background: #fafbfc;
+  background: #fcfefe;
+  transition: border-color 0.2s ease, background 0.2s ease;
 }
 
-.question.active { border-color: var(--accent); background: #f0f7ff; }
+.question.active {
+  border-left-color: var(--yellow);
+  background: #fffdf4;
+}
 
-.question h3 { margin: 0 0 0.6rem; font-size: 1.05rem; }
+.question h3 {
+  margin: 0 0 0.7rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--navy);
+}
 
 .badge {
   display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 700;
+  font-size: 0.68rem;
+  font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
-  padding: 0.15rem 0.5rem;
+  letter-spacing: 0.08em;
+  padding: 0.2rem 0.55rem;
   border-radius: 999px;
-  background: #e6e8eb;
-  color: var(--muted);
   vertical-align: middle;
+  margin-left: 0.4rem;
 }
 
-.chart { margin-top: 0.4rem; }
+.badge.single { background: var(--mint); color: var(--green); }
+.badge.multi { background: #fde8e5; color: #b23d30; }
 
-.chart-title { font-weight: 700; margin-bottom: 0.5rem; }
+.chart { margin-top: 0.5rem; }
+
+.chart-title {
+  font-weight: 900;
+  color: var(--navy);
+  margin-bottom: 0.55rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
 
 .bar-row {
   display: grid;
-  grid-template-columns: minmax(90px, 28%) 1fr auto;
-  gap: 0.6rem;
+  grid-template-columns: minmax(88px, 26%) 1fr auto;
+  gap: 0.65rem;
   align-items: center;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.45rem;
   font-size: 0.9rem;
 }
 
-.bar-label { overflow-wrap: anywhere; }
+.bar-label { overflow-wrap: anywhere; font-weight: 600; color: var(--charcoal); }
 
 .bar-track {
-  background: #e2e8f0;
+  background: var(--mint);
   border-radius: 999px;
   height: 18px;
   overflow: hidden;
 }
 
 .bar-fill {
-  background: var(--accent);
+  background: linear-gradient(90deg, var(--navy), var(--blue));
   height: 100%;
   border-radius: 999px;
-  transition: width 0.4s ease;
+  transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.bar-count { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+/* felváltva akcentus-színek a sorokban */
+.bar-row:nth-child(2n) .bar-fill { background: linear-gradient(90deg, var(--green), #15906a); }
+.bar-row:nth-child(3n) .bar-fill { background: linear-gradient(90deg, #c2543f, var(--coral)); }
 
-/* --- résztvevői oldal: mobilon is nagy, kényelmes érintés --- */
+.bar-count {
+  color: #5b6b78;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  font-weight: 700;
+}
+
+/* ============================================================
+   RÉSZTVEVŐI oldal – éjszakai esemény-fény, mélykék
+   ============================================================ */
+
+body.voter {
+  min-height: 100vh;
+  background:
+    radial-gradient(1100px 560px at 12% -8%, rgba(250, 130, 115, 0.35), transparent 58%),
+    radial-gradient(900px 520px at 108% 108%, rgba(243, 228, 135, 0.30), transparent 55%),
+    radial-gradient(800px 480px at 85% -15%, rgba(15, 100, 70, 0.35), transparent 60%),
+    var(--navy);
+  color: #fff;
+}
 
 .voter {
-  max-width: 520px;
+  max-width: 560px;
   margin-inline: auto;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0.5rem 0;
+  padding: 1.25rem 1.1rem 2rem;
+}
+
+.brand-voter {
+  text-align: center;
+  margin: 0 0 1.4rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  opacity: 0.85;
 }
 
 .screen { text-align: center; }
@@ -179,38 +313,115 @@ h1 { margin: 0 0 1.25rem; font-size: 1.5rem; }
 .screen.hidden { display: none; }
 
 .screen h1 {
-  font-size: 1.6rem;
-  line-height: 1.25;
-  margin-bottom: 0.4rem;
+  font-size: 1.7rem;
+  line-height: 1.3;
+  margin: 0 auto 0.5rem;
+  max-width: 24ch;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
 }
 
+/* Várakozás: lassú fény-pulzálás */
 .waiting-title,
-.thanks-title { font-size: 1.4rem; font-weight: 700; }
+.thanks-title {
+  font-size: 1.45rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: #fff;
+  margin: 0 0 0.5rem;
+}
 
+.waiting-title { animation: breathe 3.2s ease-in-out infinite; }
+
+@keyframes breathe {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.62; }
+}
+
+.thanks-title {
+  color: var(--yellow);
+  text-shadow: 0 0 28px rgba(243, 228, 135, 0.45);
+}
+
+.thanks-icon {
+  display: inline-block;
+  margin-bottom: 0.9rem;
+  width: 64px;
+  height: 64px;
+  line-height: 64px;
+  border-radius: 50%;
+  background: var(--yellow);
+  color: var(--navy);
+  font-size: 1.7rem;
+  font-weight: 900;
+  box-shadow: 0 6px 24px rgba(243, 228, 135, 0.4);
+}
+
+#q-hint { color: rgba(230, 245, 245, 0.85); margin: 0 0 1.2rem; font-size: 0.95rem; }
+
+/* opciók: fehér kártyák, kiválasztva sárga */
 .option {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 0.85rem;
   text-align: left;
-  background: var(--card);
-  border: 1px solid #cbd5e0;
+  background: rgba(255, 255, 255, 0.97);
+  color: var(--navy);
+  border: 2px solid transparent;
   border-radius: var(--radius);
-  padding: 0.95rem 1.1rem;
-  margin-bottom: 0.7rem;
-  font-size: 1.1rem;
+  padding: 1rem 1.15rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.12rem;
+  font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+  transition: transform 0.12s ease, background 0.15s ease, border-color 0.15s ease;
 }
 
-.option:active { background: #edf2f7; }
+.option:active { transform: scale(0.985); }
+
+.option:has(input:checked) {
+  background: var(--yellow);
+  border-color: var(--navy);
+}
 
 .option input {
-  width: 1.35rem;
-  height: 1.35rem;
+  width: 1.4rem;
+  height: 1.4rem;
   flex-shrink: 0;
-  accent-color: var(--accent);
+  accent-color: var(--navy);
 }
 
-#vote-btn { margin-top: 0.9rem; }
+/* CTA – nagyon feltűnő sárga gomb */
+#vote-btn {
+  width: 100%;
+  margin-top: 1.1rem;
+  padding: 1.05rem;
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  border-radius: 999px;
+  border: 0;
+  background: var(--yellow);
+  color: var(--navy);
+  cursor: pointer;
+  box-shadow: 0 8px 26px rgba(243, 228, 135, 0.38);
+  transition: transform 0.12s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
 
-footer { margin-top: 2rem; font-size: 0.85rem; text-align: center; }
+#vote-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(243, 228, 135, 0.5); }
+#vote-btn:disabled { opacity: 0.45; cursor: default; box-shadow: none; }
+
+#vote-msg { color: #ffe3dd; margin-top: 0.9rem; }
+
+.screen .muted { color: rgba(230, 245, 245, 0.75); }
+
+footer {
+  margin-top: 2.2rem;
+  font-size: 0.82rem;
+  text-align: center;
+  color: rgba(230, 245, 245, 0.75);
+}
+
+footer strong { color: var(--yellow); letter-spacing: 0.06em; }

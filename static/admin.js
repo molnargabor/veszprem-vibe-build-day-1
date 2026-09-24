@@ -37,7 +37,7 @@ function render(state) {
       ? '<button class="btn" disabled>✔ Aktív</button>'
       : `<button class="btn" data-publish="${q.id}">Publikálás</button>`;
     return `<div class="question ${q.is_active ? "active" : ""}">
-      <h3>${esc(q.text)} <span class="badge">${q.type}</span></h3>
+      <h3>${esc(q.text)} <span class="badge ${q.type}">${q.type}</span></h3>
       ${body}
       <div class="row">${btn}</div>
     </div>`;
