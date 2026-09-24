@@ -1,0 +1,216 @@
+/* Saját CSS – nincs külső asset/CDN. */
+
+:root {
+  --bg: #f4f5f7;
+  --ink: #1c2430;
+  --muted: #66707d;
+  --card: #ffffff;
+  --accent: #2b6cb0;
+  --accent-dark: #245a94;
+  --danger: #c53030;
+  --radius: 12px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  padding: 1.5rem;
+  max-width: 860px;
+  margin-inline: auto;
+}
+
+h1 { margin: 0 0 1.25rem; font-size: 1.5rem; }
+
+/* --- általános kártyák / gombok --- */
+
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.card h2 { margin-top: 0; font-size: 1.1rem; }
+
+.card.danger { border: 1px solid rgba(197, 48, 48, 0.25); }
+
+.field { display: block; margin-bottom: 0.9rem; font-weight: 600; }
+
+.field input,
+.field select,
+.field textarea {
+  display: block;
+  width: 100%;
+  margin-top: 0.3rem;
+  padding: 0.55rem 0.7rem;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 1px solid #cbd5e0;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.field textarea { resize: vertical; }
+
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  border: 1px solid #cbd5e0;
+  border-radius: 8px;
+  background: #edf2f7;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.btn:hover:not(:disabled) { background: #e2e8f0; }
+.btn:disabled { opacity: 0.55; cursor: default; }
+
+.btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.btn.primary:hover:not(:disabled) { background: var(--accent-dark); }
+
+.btn.danger-outline {
+  background: #fff;
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.btn.danger-outline:hover { background: #fed7d7; }
+
+.btn.big {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.2rem;
+  border-radius: 12px;
+}
+
+.row { margin-top: 0.9rem; }
+
+.url { font-size: 1.25rem; font-weight: 600; word-break: break-all; }
+
+.qr svg { width: 260px; height: 260px; max-width: 100%; background: #fff; }
+
+.muted { color: var(--muted); }
+
+/* --- admin: kérdéslista + diagram --- */
+
+.question {
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem;
+  margin-bottom: 1rem;
+  background: #fafbfc;
+}
+
+.question.active { border-color: var(--accent); background: #f0f7ff; }
+
+.question h3 { margin: 0 0 0.6rem; font-size: 1.05rem; }
+
+.badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: #e6e8eb;
+  color: var(--muted);
+  vertical-align: middle;
+}
+
+.chart { margin-top: 0.4rem; }
+
+.chart-title { font-weight: 700; margin-bottom: 0.5rem; }
+
+.bar-row {
+  display: grid;
+  grid-template-columns: minmax(90px, 28%) 1fr auto;
+  gap: 0.6rem;
+  align-items: center;
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+}
+
+.bar-label { overflow-wrap: anywhere; }
+
+.bar-track {
+  background: #e2e8f0;
+  border-radius: 999px;
+  height: 18px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  background: var(--accent);
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.bar-count { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* --- résztvevői oldal: mobilon is nagy, kényelmes érintés --- */
+
+.voter {
+  max-width: 520px;
+  margin-inline: auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+
+.screen { text-align: center; }
+
+.screen.hidden { display: none; }
+
+.screen h1 {
+  font-size: 1.6rem;
+  line-height: 1.25;
+  margin-bottom: 0.4rem;
+}
+
+.waiting-title,
+.thanks-title { font-size: 1.4rem; font-weight: 700; }
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  text-align: left;
+  background: var(--card);
+  border: 1px solid #cbd5e0;
+  border-radius: var(--radius);
+  padding: 0.95rem 1.1rem;
+  margin-bottom: 0.7rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.option:active { background: #edf2f7; }
+
+.option input {
+  width: 1.35rem;
+  height: 1.35rem;
+  flex-shrink: 0;
+  accent-color: var(--accent);
+}
+
+#vote-btn { margin-top: 0.9rem; }
+
+footer { margin-top: 2rem; font-size: 0.85rem; text-align: center; }

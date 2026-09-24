@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Szavazás – Admin</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1>Szavazás – admin felület</h1>
+  </header>
+
+  <section class="card">
+    <h2>Résztvevői link</h2>
+    <p class="url">{{ voter_url }}</p>
+    <div class="qr">{{ qr_svg | safe }}</div>
+    <p class="muted">A QR-kód mindig a LAN-címes résztvevői URL-re mutat – soha ne localhostra.</p>
+  </section>
+
+  <section class="card">
+    <h2>Új kérdés</h2>
+    <form id="question-form">
+      <label class="field">Kérdés szövege
+        <input type="text" id="q-text" maxlength="300" placeholder="Pl. Melyik a kedvenc állatod?" required>
+      </label>
+
+      <label class="field">Típus
+        <select id="q-type">
+          <option value="single">Egy válasz (single)</option>
+          <option value="multi">Több válasz (multi)</option>
+        </select>
+      </label>
+
+      <label class="field">Válaszlehetőségek (2–8, minden sorban egy)
+        <textarea id="q-options" rows="4" placeholder="Kutya&#10;Macska&#10;Papagáj" required></textarea>
+      </label>
+
+      <button type="submit" class="btn primary">Kérdés létrehozása</button>
+      <p id="form-msg" class="muted"></p>
+    </form>
+  </section>
+
+  <section class="card">
+    <h2>Kérdések</h2>
+    <div id="questions"><p class="muted">Betöltés…</p></div>
+  </section>
+
+  <section class="card danger">
+    <h2>Veszélyes zóna</h2>
+    <p class="muted">Minden kérdés és szavazat törlődik – ez nem vonható vissza.</p>
+    <button id="reset-btn" class="btn danger-outline">Minden törlése (reset)</button>
+  </section>
+
+  <footer class="muted">Ez az oldal csak a host gépről (localhost) érhető el.</footer>
+
+  <script src="/static/admin.js"></script>
+</body>
+</html>

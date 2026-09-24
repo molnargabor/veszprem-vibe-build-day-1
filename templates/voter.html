@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Szavazás</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main class="voter">
+    <div id="screen-waiting" class="screen">
+      <p class="waiting-title">Várakozás a következő kérdésre…</p>
+      <p class="muted">Az admin hamarosan publikál egy kérdést.</p>
+    </div>
+
+    <div id="screen-question" class="screen hidden">
+      <h1 id="q-text"></h1>
+      <p id="q-hint" class="muted"></p>
+      <div id="q-options"></div>
+      <button id="vote-btn" class="btn primary big" disabled>Szavazat küldése</button>
+      <p id="vote-msg" class="muted"></p>
+    </div>
+
+    <div id="screen-thanks" class="screen hidden">
+      <p class="thanks-title">Köszönjük, a szavazatod rögzítettük</p>
+      <p class="muted">Köszönjük, hogy szavaztál!</p>
+    </div>
+  </main>
+
+  <script src="/static/voter.js"></script>
+</body>
+</html>
